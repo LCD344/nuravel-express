@@ -1,0 +1,22 @@
+const chalk = require('chalk');
+
+class {{name}} {
+	constructor() {
+
+		this.signature = "command:signature";
+		this.description = "description";
+	}
+
+	handle() {
+		console.log(chalk.yellow(`yourCommand`));
+
+		try {
+			console.log(chalk.green(`${this.path}/${name}.js created successfully`));
+		} catch (error) {
+			console.log(chalk.bgRed(`${this.path}/${name}.js creation failed with the following error`, error));
+		}
+	}
+}
+
+
+module.exports = new {{name}};
