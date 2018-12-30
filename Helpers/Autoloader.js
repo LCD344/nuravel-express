@@ -3,14 +3,14 @@ const path = require('path');
 
 class Autoloader {
 	load(dir) {
-		let result = [];
+		let result = {};
 
 		if (fs.existsSync(dir)) {
-			result = fs.readdirSync(dir).filter((file) => {
+			fs.readdirSync(dir).filter((file) => {
 				return !fs.lstatSync(path.resolve(dir, file)).isDirectory();
-			}).map((file) => {
+			}).forEach((file) => {
 				const filePath = path.resolve(dir, file);
-				return require(path.resolve(dir, file));
+				result[file.replace(/\.[^/.]+$/, "")] = require(path.resolve(dir, file));
 			});
 		}
 

@@ -1,13 +1,17 @@
 const commands = require('./Console/Commands');
 const autoloader = require('./Helpers/Autoloader');
-const BaseMiddleware = require('./Base/BaseMiddleware');
+const Middleware = require('./Middleware/Middleware');
 const BaseFactory = require('./Base/BaseFactory');
-const Errors = require('./Base/Errors/Errors');
+const Errors = require('./Errors/Errors');
+const Kernel = require('./Base/Kernel');
+const Router = require('./Base/Router');
 
 module.exports = {
+	Kernel,
+	Router,
 	commands,
 	autoloader,
-	BaseMiddleware,
 	Errors,
+	Middleware,
 	BaseFactory
 };
