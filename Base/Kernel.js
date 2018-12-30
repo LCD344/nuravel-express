@@ -33,7 +33,7 @@ class Kernel {
 	}
 
 	static boot(app) {
-		return new Kernel(app);
+		return new this(app);
 	}
 }
 

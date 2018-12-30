@@ -12,6 +12,7 @@
   "author": "lcd344",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "csurf": "^1.9.0",

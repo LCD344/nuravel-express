@@ -4,7 +4,7 @@ const BaseMiddleware = require('./BaseMiddleware');
 const BaseError = require('../../Errors/BaseError');
 const autolader = require('../../Helpers/Autoloader');
 
-const models = autolader.load(path.resolve(process.cwd(), 'app/Models'));
+// const models = autolader.load(path.resolve(process.cwd(), 'app/Models'));
 
 class ModelMiddleware extends BaseMiddleware {
 	handle() {
