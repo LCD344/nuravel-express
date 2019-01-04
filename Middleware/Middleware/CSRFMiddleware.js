@@ -11,7 +11,7 @@ class CSRFMiddleware extends BaseMiddleware {
 
 	handle(req, res, next) {
 		if (process.env.APP_ENV !== 'test') {
-			res.header('csrfToken', req.csrfToken());
+			res.header(process.env.APP_CSRF_HEADER || 'csrfToken', req.csrfToken());
 		}
 		next();
 	}

@@ -1,4 +1,4 @@
-const BaseMiddleware = require('nuravel-express').BaseMiddleware;
+const BaseMiddleware = require('nuravel-express').Middleware.BaseMiddleware;
 
 class {{name}} extends BaseMiddleware {
 	constructor(router) {

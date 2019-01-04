@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Model = require('./Model');
+const jwtService = require('../Services/Services/JwtService');
 
 class Authenticatable extends Model {
 
@@ -15,6 +16,13 @@ class Authenticatable extends Model {
 
 	async setPassword(password) {
 		this.password = await bcrypt.hashSync(password, process.env.SALT_ROUNDS || 12);
+	}
+
+	async loginToken() {
+		return jwtService.generate({
+			id: this.id,
+			username: this.username
+		});
 	}
 }
 

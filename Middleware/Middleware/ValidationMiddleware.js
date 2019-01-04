@@ -1,8 +1,8 @@
 const DataError = require('../../Errors/DataError');
 const {check, validationResult} = require('express-validator/check');
-const BaseMiddleware = require('./BaseMiddleware');
 
-class Validator extends BaseMiddleware {
+
+class Validator {
 	validate(rules) {
 		return [
 			this.rules(rules),
@@ -35,7 +35,7 @@ class Validator extends BaseMiddleware {
 		return validationRules;
 	}
 
-	handle(req, res, next) {
+	verify(req, res, next) {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			throw new DataError('Validation Failed', 422, {errors: errors.array()}, 'Validation Error');
@@ -45,6 +45,10 @@ class Validator extends BaseMiddleware {
 
 	min(args) {
 		this.isLength({min: args[0]})
+	}
+
+	string() {
+		this.isString();
 	}
 
 	required() {
@@ -69,6 +73,15 @@ class Validator extends BaseMiddleware {
 
 	url() {
 		this.isURL();
+	}
+
+	confirmed() {
+		this.custom((value, {req, path}) => {
+			if (value !== req.body[`${path}_confirmation`]) {
+				return Promise.reject("Password confirmation doesn't match");
+			}
+			return Promise.resolve();
+		});
 	}
 
 	requiredIf(args, self) {
@@ -100,4 +113,4 @@ class Validator extends BaseMiddleware {
 	}
 }
 
-module.exports = Validator;
+module.exports = new Validator;

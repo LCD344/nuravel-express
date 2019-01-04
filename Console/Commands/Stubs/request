@@ -1,0 +1,15 @@
+const Request = require('nuravel-express').Request;
+
+class {{name}} extends Request {
+
+	authorize() {
+		return true;
+	}
+
+	rules() {
+		return {};
+	}
+}
+
+
+module.exports = new {{name}}();
