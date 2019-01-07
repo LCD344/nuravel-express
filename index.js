@@ -10,6 +10,7 @@ const Model = require('./Base/Model');
 const Request = require('./Base/Request');
 const Authenticatable = require('./Base/Authenticatable');
 const Database = require('./Base/Database');
+const Test = require('./Base/Test');
 
 module.exports = {
 	Kernel,
@@ -23,5 +24,6 @@ module.exports = {
 	Request,
 	Authenticatable,
 	Services,
-	Database
+	Database,
+	Test
 };

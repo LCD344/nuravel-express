@@ -1,10 +1,12 @@
-import test from 'ava';
-import sinon from 'sinon';
+import { Test } from 'nuravel-express';
+import app from '../../app';
 
-test.afterEach.always('Restore sinon', t => {
-	sinon.restore();
-});
+class {{name}} extends Test {
 
-test('example', async t => {
-	t.true(true);
-});
+	test_example(t) {
+		t.true(true);
+	}
+
+}
+
+(new {{name}}(app, true)).run();
