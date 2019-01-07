@@ -1,20 +1,26 @@
 let driver;
+const models = {};
 
 class Model {
 	constructor(schema) {
-		const model = new driver.Schema(schema, {
-			timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'},
-			toJSON: {
-				transform: this.toJSON.bind(this)
-			}
-		});
-		const methods = this.getInstanceMethodNames(this);
+		if (models[this.constructor.name]) {
+			this.model = models[this.constructor.name];
+		} else {
+			const model = new driver.Schema(schema, {
+				timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'},
+				toJSON: {
+					transform: this.toJSON.bind(this)
+				}
+			});
+			const methods = this.getInstanceMethodNames(this);
 
-		methods.forEach((method) => {
-			model.methods[method] = this[method];
-		});
+			methods.forEach((method) => {
+				model.methods[method] = this[method];
+			});
 
-		this.model = driver.model(this.constructor.name, model);
+			this.model = driver.model(this.constructor.name, model);
+			models[this.constructor.name] = this.model;
+		}
 	}
 
 	getInstanceMethodNames(obj) {
