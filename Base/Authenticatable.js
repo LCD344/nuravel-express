@@ -18,7 +18,7 @@ class Authenticatable extends Model {
 		this.password = await bcrypt.hashSync(password, process.env.SALT_ROUNDS || 12);
 	}
 
-	async loginToken() {
+	loginToken() {
 		return jwtService.generate({
 			id: this.id,
 			username: this.username

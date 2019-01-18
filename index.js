@@ -10,7 +10,10 @@ const Model = require('./Base/Model');
 const Request = require('./Base/Request');
 const Authenticatable = require('./Base/Authenticatable');
 const Database = require('./Base/Database');
-const Test = require('./Base/Test');
+Test = {}
+if(process.env.APP_ENV === 'test'){
+	Test = require('./Base/Test');
+}
 
 module.exports = {
 	Kernel,

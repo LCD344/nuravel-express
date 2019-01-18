@@ -40,6 +40,8 @@ class Test {
 				} else {
 					test(method.replace(/_/g, ' '), this[method].bind(this));
 				}
+			} else if(method.indexOf('only_test') === 0){
+				test.only(method.replace(/_/g, ' '), this[method].bind(this));
 			}
 		});
 	}
