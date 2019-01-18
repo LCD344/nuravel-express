@@ -21,7 +21,7 @@ class Factory {
 	}
 
 	async createOne(data) {
-		data = Object.assign(this.define(), data);
+		data = Object.assign(await this.define(), data);
 		const object = new (this.model())(data);
 		await object.save();
 		return object;

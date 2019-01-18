@@ -15,7 +15,7 @@ class Authenticatable extends Model {
 	}
 
 	async setPassword(password) {
-		this.password = await bcrypt.hashSync(password, process.env.SALT_ROUNDS || 12);
+		this.password = await bcrypt.hash(password, process.env.SALT_ROUNDS || 12);
 	}
 
 	loginToken() {

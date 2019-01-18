@@ -2,7 +2,6 @@ const BaseMiddleware = require('./BaseMiddleware');
 
 class ErrorHandlerMiddleware extends BaseMiddleware {
 	handle(err, req, res, next) {
-		console.log('error handler middleware');
 		if (process.env.NODE_ENV !== 'test') {
 			console.log(err);
 		}

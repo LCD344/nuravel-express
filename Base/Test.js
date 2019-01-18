@@ -9,6 +9,7 @@ class Test {
 		this.serial = true;
 		this.withDb = true;
 		this.mock = sinon;
+		this.app = app;
 		if (app) {
 			this.request = request(app);
 		}
@@ -27,6 +28,16 @@ class Test {
 		this.mock.restore();
 	}
 
+	async authorize(username, password) {
+
+		return (await this.request.post('/auth/login').send({
+			username: username,
+			password: password
+		})).headers['set-cookie'];
+
+	}
+
+
 	run() {
 		test.beforeEach(this.setUp.bind(this));
 		test.afterEach.always(this.tearDown.bind(this));
@@ -40,11 +51,12 @@ class Test {
 				} else {
 					test(method.replace(/_/g, ' '), this[method].bind(this));
 				}
-			} else if(method.indexOf('only_test') === 0){
+			} else if (method.indexOf('only_test') === 0) {
 				test.only(method.replace(/_/g, ' '), this[method].bind(this));
 			}
 		});
 	}
+
 
 	[getMethods]() {
 		let array = [];
