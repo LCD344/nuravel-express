@@ -5,6 +5,10 @@ const sinon = require('sinon');
 const getMethods = Symbol('Get methods');
 
 class Test {
+	loginPath() {
+		return '/auth/login';
+	};
+
 	constructor(app = false) {
 		this.serial = true;
 		this.withDb = true;
@@ -30,7 +34,7 @@ class Test {
 
 	async authorize(username, password) {
 
-		return (await this.request.post('/auth/login').send({
+		return (await this.request.post(this.loginPath()).send({
 			username: username,
 			password: password
 		})).headers['set-cookie'];
@@ -71,6 +75,18 @@ class Test {
 			proto = Object.getPrototypeOf(proto);
 		}
 		return array;
+	}
+
+	hasError(response, param) {
+		return response.body.errors.some((error) => {
+			return error.param === param;
+		});
+	}
+
+	async databaseHas(model, data) {
+		const exists =  await model.findOne(data);
+
+		return !! exists;
 	}
 }
 

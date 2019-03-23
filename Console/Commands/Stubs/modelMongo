@@ -1,0 +1,9 @@
+const Model = require('nuravel-express').Model;
+
+class {{name}} extends Model {
+}
+
+const {{name}} = new {{name}}({
+
+});
+module.exports = {{name}}.model;

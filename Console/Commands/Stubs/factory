@@ -1,8 +1,8 @@
 const faker = require('faker');
 const {{model}} = require('../../app/models/{{model}}');
-const BaseFactory = require('nuravel-express').BaseFactory;
+const Factory = require('nuravel-express').Factory;
 
-class {{name}} extends BaseFactory {
+class {{name}} extends Factory {
 	model() {
 		return {{model}};
 	}
