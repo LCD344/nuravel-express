@@ -53,6 +53,10 @@ class Model {
 		return ret;
 	}
 
+	static getModel(name) {
+		return models[name];
+	}
+
 	static set driver(value) {
 		driver = value;
 	}

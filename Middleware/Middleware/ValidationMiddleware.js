@@ -1,6 +1,6 @@
 const DataError = require('../../Errors/DataError');
 const {check, validationResult} = require('express-validator/check');
-
+const Model = require('../../Base/Model');
 
 class Validator {
 	validate(rules) {
@@ -80,6 +80,21 @@ class Validator {
 			if (value !== req.body[`${path}_confirmation`]) {
 				return Promise.reject("Password confirmation doesn't match");
 			}
+			return Promise.resolve();
+		});
+	}
+
+	unique(args) {
+		this.custom(async (value, {req, path}) => {
+			const model = Model.getModel(args[0]);
+			const field = args[1] || path;
+
+			const condition = {};
+			condition[field] = value;
+			if (!!await model.findOne(condition)) {
+				return Promise.reject(`${path} must be unique`);
+			}
+
 			return Promise.resolve();
 		});
 	}

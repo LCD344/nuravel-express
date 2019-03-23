@@ -76,17 +76,21 @@ class Test {
 		}
 		return array;
 	}
-
-	hasError(response, param) {
+	// TODO dedicated test request class
+	hasError(response, param, message) {
 		return response.body.errors.some((error) => {
-			return error.param === param;
+			let messageExists = true;
+			if (message) {
+				messageExists = error.msg === message;
+			}
+			return error.param === param && messageExists;
 		});
 	}
 
 	async databaseHas(model, data) {
-		const exists =  await model.findOne(data);
+		const exists = await model.findOne(data);
 
-		return !! exists;
+		return !!exists;
 	}
 }
 
