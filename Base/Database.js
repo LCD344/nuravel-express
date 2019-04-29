@@ -9,7 +9,7 @@ class Database {
 				this.setUpMongoose(driver);
 				break;
 			case 'knex':
-				this.setUpKnex();
+				this.setUpKnex(driver);
 				break;
 			default:
 				throw new BaseError('Unrecognized database driver');
@@ -36,8 +36,7 @@ class Database {
 		this.driver = mongoose;
 	}
 
-	setUpKnex() {
-
+	setUpKnex(knex) {
 	}
 }
 
