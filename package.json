@@ -9,6 +9,10 @@
   "keywords": [
     "Nuravel"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashleygwilliams/my_package.git"
+  },
   "author": "lcd344",
   "license": "MIT",
   "dependencies": {
